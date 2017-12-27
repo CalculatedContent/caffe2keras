@@ -20,12 +20,12 @@ In order to convert a model you just need the `.caffemodel` weights and the
 a header to the `.prototxt` network structure, preferably as an `Input` layer:
 
 ```
-layer {
-  name: "image"
-  type: "Input"
-  top: "image"
-  input_param {shape {dim: 1, dim: 3, dim: 128, dim: 128}}
-}
+input: "data"
+input_dim: 10
+input_dim: 3
+input_dim: 227
+input_dim: 227
+
 ```
 
 Given the differences between Caffe and Keras when applying the max pooling
@@ -36,11 +36,15 @@ The module `caffe2keras` can be used as a command line interface for converting
 any model the following way:
 
 ```
-python -m caffe2keras models/train_val_for_keras.prototxt models/bvlc_googlenet.caffemodel keras-output-model.h5
+python -m _main_.py models/train_val_for_keras.prototxt models/bvlc_googlenet.caffemodel keras-output-model.h5
 ```
 
 To use the produced model from Keras, simply load the output file (i.e.
 `keras-output-model.h5`) using `keras.models.load_model`.
+
+### Note 
+you can remove some lrn layers for exzample to make sure the code run with no errors, because the lrn and other laysers don't have weights, so it can be remve from the `.prototxt` file.
+
 
 ### Acknowledgments
 
@@ -50,3 +54,5 @@ to. Previous authors:
 - Marc Bolaños ([email](mailto:marc.bolanos@ub.edu), [Github](https://github.com/MarcBS))
 - Pranav Shyam ([Github](https://github.com/pranv))
 - Antonella Cascitelli ([Github](https://github.com/lenlen))
+- qxcv ([Github](https://github.com/qxcv))
+
