@@ -44,6 +44,7 @@ To use the produced model from Keras, simply load the output file (i.e.
 
 ### Note 
 you can remove some lrn layers for exzample to make sure the code run with no errors, because the lrn and other laysers don't have weights, so it can be remve from the `.prototxt` file.
+and the load_weight use the tf order dim
 
 
 ### Acknowledgments
